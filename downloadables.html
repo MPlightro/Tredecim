@@ -19,26 +19,43 @@
             <ul class="download-list">
                 <li>
                     <strong>📅 Printable Tredecim Year Calendar (PDF)</strong><br>
-                    <a href="downloads/tredecim-year-calendar.pdf" download>Download PDF</a>
+                    <a href="downloads/tredecim-year-calendar.pdf" download class="button">Download PDF</a>
                 </li>
 
                 <li>
                     <strong>🧾 Tredecim Holiday List (PDF)</strong><br>
-                    <a href="downloads/tredecim-holidays.pdf" download>Download PDF</a>
+                    <a href="downloads/tredecim-holidays.pdf" download class="button">Download PDF</a>
                 </li>
 
                 <li>
                     <strong>📖 Full Overview (Printable)</strong><br>
-                    <a href="downloads/tredecim-overview.pdf" download>Download PDF</a>
+                    <a href="downloads/tredecim-overview.pdf" download class="button">Download PDF</a>
                 </li>
 
                 <li>
-                    <h2>📅 Subscribe to Tredecim Calendar</h2>
-                    <p>Keep track of Tredecim dates in your favorite calendar app.</p>
-                    <a href="webcal://tredecim.netlify.app/downloads/tredecim.ics">
-                        📅 Subscribe to Tredecim Calendar
+                    <strong> 📅 Subscribe to Tredecim Calendar</strong><br>
+                    <a href="webcal://tredecim.netlify.app/downloads/tredecim.ics" class="button">
+                        Subscribe
                     </a>
+                    <p><strong>Note for Mac users:</strong> Make sure the Apple Calendar app is set as your default
+                        calendar app in <code>System Settings > General > Default Apps</code>.</p>
+                    <p>🎯 If the subscribe link doesn’t work, you can <a href="/downloads/tredecim.ics">download the
+                            file</a> and open it manually in Calendar.</p>
+                    <style>
+                        .button {
+                            background: #264653;
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 8px;
+                            text-decoration: none;
+                            font-weight: bold;
+                            display: inline-block;
+                        }
 
+                        .button:hover {
+                            background: #2a9d8f;
+                        }
+                    </style>
                 </li>
             </ul>
         </section>
@@ -46,7 +63,6 @@
 
     <div id="footer"></div>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/ics-generator.js"></script>
 </body>
 
 </html>
