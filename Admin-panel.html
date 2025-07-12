@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tredecim Admin</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f1f1f1;
+      flex-direction: column;
+    }
+    .admin-login, .admin-panel {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      display: none;
+    }
+    .admin-login.active, .admin-panel.active {
+      display: block;
+    }
+    .admin-login h2, .admin-panel h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #111;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-login active">
+    <h2>Admin Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div class="admin-panel" id="adminPanel">
+    <h2>Welcome, Admin!</h2>
+    <p>You can generate the latest Tredecim calendar .ics file here:</p>
+    <button onclick="triggerICSDownload(2025, 2030)">📅 Generate .ics File</button>
+  </div>
+
+  <script>
+    const ADMIN_USER = "admin";
+    const ADMIN_PASS = "tredecim2025";
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      if (user === ADMIN_USER && pass === ADMIN_PASS) {
+        document.querySelector(".admin-login").classList.remove("active");
+        document.getElementById("adminPanel").classList.add("active");
+      } else {
+        alert("Invalid credentials");
+      }
+    }
+
+    // Download ICS from the generateICS function
+    function triggerICSDownload(startYear = 2025, endYear = 2030) {
+      if (typeof generateICS !== 'function') {
+        alert("generateICS function not found. Please load ics-generator.js");
+        return;
+      }
+      const content = generateICS(startYear, endYear);
+      const blob = new Blob([content], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `tredecim-calendar-${startYear}-${endYear}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+  <script src="../scripts/ics-generator.js"></script>
+</body>
+</html>
