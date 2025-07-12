@@ -81,7 +81,7 @@ function triggerICSDownload(startYear = 2025, endYear = 2030) {
 
   const a = document.createElement('a');
   a.href = url;
-  a.download = `tredecim-calendar-${startYear}-${endYear}.ics`;
+  a.download = `tredecim-calendar.ics`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
